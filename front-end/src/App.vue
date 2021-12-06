@@ -1,20 +1,40 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="bar">
+      <router-link to="/">
+        <div>Home</div>
+      </router-link>
+
+      <router-link to="/anime">
+        <div>Anime</div>
+      </router-link>
+
+      <router-link to="/games">
+        <div>Games</div>
+      </router-link>
     </div>
     <router-view/>
   </div>
 </template>
+    
 
 <style>
+* {
+  background-color: #000022;
+} 
+
+.bar {
+  display: flex;
+  justify-content: space-around;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #000022;
 }
 
 #nav {

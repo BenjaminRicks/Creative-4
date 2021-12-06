@@ -1,24 +1,33 @@
 <template>
-   <!--- <div class='page'>
+    <div class='page'>
       <div class='home-container'>
         <div class='image-container-1'>
-          <a class= 'top-words' href='/pages/anime.html'>Anime</a>
-        </div>
+          <router-link to="/anime">
+            <a class= 'top-words'>Anime</a>
+          </router-link>
+        
+	</div>
         <div class='image-container-2'>
-          <a class= 'top-words' href='/pages/games.html'>Games</a>
-        </div>
+          <router-link to="/games">
+            <a class= 'top-words'>Games</a>
+          </router-link>
+
+	</div>
 
         <div class='image-container-3'>
-          <a class= 'top-words' href='/pages/school.html'>School</a>
+          <router-link to="/school">
+            <a class= 'top-words'>School</a>
+          </router-link>
         </div>
 
         <div class='image-container-4'>
-          <a class= 'top-words' href='/pages/misc.html'>Misc</a>
+          <router-link to="/school">
+            <a class= 'top-words'>Misc</a>
+          </router-link>
 
         </div>
-
       </div>
---->
+    </div>
 </template>
 
 <script>
@@ -41,7 +50,7 @@ export default {
 }
 
 .page {
-  width: 100%;
+  width: 98%;
   background-color: #130040;
   margin: 0;
   padding: 0;
@@ -65,7 +74,7 @@ export default {
   /*border: 1px solid #0094C6;*/
   padding: 0;
   margin: 0;
-  background-image: url('../images/AnimeBanner.jpg');
+  background-image: url('/images/AnimeBanner.jpg');
   background-size: cover;
   background-position: 15% 0;
 
@@ -80,7 +89,7 @@ export default {
   /*border: 1px solid #0094C6;*/
   padding: 0;
   margin: 0;
-  background-image: url('../images/MinecraftBanner.png');
+  background-image: url('/images/MinecraftBanner.png');
   background-size: cover;
   background-position: 15% 0;
 
@@ -95,7 +104,7 @@ export default {
   border: 1px solid #0094C6;
   padding: 0;
   margin: 0;
-  background-image: url('../images/BYUBanner.png');
+  background-image: url('/images/BYUBanner.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: 0 50%;
@@ -111,7 +120,7 @@ export default {
   border: 1px solid #0094C6;
   padding: 0;
   margin: 0;
-  background-image: url('../images/MiscBanner.jpg');
+  background-image: url('/images/MiscBanner.jpg');
   background-size: contain;
   background-repeat:no-repeat;
   background-position: 0 50%;
