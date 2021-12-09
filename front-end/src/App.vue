@@ -14,7 +14,10 @@
       </router-link>
     </div>
     <router-view/>
+
+    <div class='footer'>https://github.com/BenjaminRicks/Creative-4.git</div>
   </div>
+
 </template>
     
 
@@ -63,4 +66,11 @@ body {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.footer {
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
 </style>

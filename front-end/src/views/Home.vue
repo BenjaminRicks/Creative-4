@@ -50,7 +50,7 @@ export default {
 }
 
 .page {
-  width: 98%;
+  width: 95%;
   background-color: #130040;
   margin: 0;
   padding: 0;
