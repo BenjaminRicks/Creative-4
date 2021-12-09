@@ -38,20 +38,11 @@ export default {
   },
   methods: {
     async getList() {
-      console.log("Here");
-      await axios.post('/api/anime', {
-              title: "Test title",
-              rating: "0/10",
-              description: "Test description",
-              path: "Test path"
-      });
-      
       let response = await axios.get("/api/anime");
       this.animeList = response.data;
       return true;
     },
     select(anime) {
-      console.log(anime);
       this.title = anime.title;
       this.rating = anime.rating;
       this.description = anime.description;
