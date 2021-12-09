@@ -20,15 +20,29 @@
 
 <style>
 * {
-  background-color: #000022;
+
 } 
+
+body {
+  background-color: #000022;
+}
 
 .bar {
   display: flex;
+  height: 40px;
+  width: 90%;
   justify-content: space-around;
+  background-color: #005E7C;
+  border: 1px solid white;
+  border-radius: 15px;
+  align-items: center;
+
 }
 
 #app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

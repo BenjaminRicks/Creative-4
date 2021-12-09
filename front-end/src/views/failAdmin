@@ -1,0 +1,146 @@
+<template>
+<div class="admin">
+  <h1>The Admin Page!</h1>
+  <div class="heading">
+    <div class="circle">1</div>
+      <h2>Add an entry</h2>
+    </div>
+  <div class="add">
+    <div class="form">
+      <input v-model="title" placeholder="Title">
+      <p></p>
+      <input v-model="rating" placeholder="~/10">
+      <p></p>
+      <textarea v-model="description" placeholder="Description" rows="5" cols="33"></textarea>
+      <p></p>
+      <input type="file" name="photo" @change="fileChanged">
+      <button @click="upload">Upload</button>
+    </div>
+    <div class="upload" v-if="addEntry">
+      <h2>{{addEntry.title}}</h2>
+      <h2>{{addEntry.rating}}</h2>
+      <h2>{{addEntry.description}}</h2>
+      <img :src="addEntry.path" />
+    </div>
+  </div>
+
+  <div class="heading">
+    <div class="circle">2</div>
+    <h2>Edit/Delete an Item</h2>
+  </div>
+
+  <div class="edit">
+    <div class="form">
+      <input v-model="findTitle" placeholder="Search">
+      <div class="suggestions" v-if="suggestions.length > 0">
+        <div class="suggestion" v-for="s in suggestions" :key="s.id" @click="selectItem(s)">{{s.title}}</div>
+      </div>
+    </div>
+</div>                  <!---
+
+    <div class="upload" v-if="findEntry">
+      <input v-model="findEntry.title">
+      <p></p>
+      <input v-model="findEntry.rating">
+      <p></p>
+      <textarea v-model="findEntry.description" rows="5" cols="33"></textarea>
+      <p></p>
+      <img :src="findEntry.path" />
+    </div>
+    <div class="actions" v-if="findEntry">
+      <button @click="deleteItem(findEntry)">Delete</button>
+      <button @click="editItem(findEntry)">Edit</button>
+    </div>
+  </div>
+--->
+</div>
+
+</template>
+
+
+
+<script>
+import axios from 'axios';
+export default {
+  name: 'Admin',
+    data() {
+    return {
+      title: "",
+      rating: "",
+      file: null,
+      addEntry: null,
+      items: [],
+      findTitle: "",
+      findRating: "0",
+      findEntry: null,
+      description: "",
+      findDescription: "",
+    }
+  },
+  computed: {
+    suggestions() {
+      this.getEntries();
+      console.log("The frick");
+      console.log(this.entries);
+      let entries = this.entries.filter(entry => entry.title.toLowerCase().startsWith(this.findTitle.toLowerCase()));
+      return entries.sort((a, b) => a.title > b.title);
+    }
+  },
+    created() {
+      console.log("Here");
+      this.getEntries();
+      console.log("Here2");
+  },
+    methods: {
+    fileChanged(event) {
+      this.file = event.target.files[0]
+    },
+    async upload() {
+        const formData = new FormData();
+        formData.append('photo', this.file, this.file.name)
+        let r1 = await axios.post('/api/photos', formData);
+        let r2 = await axios.post('/api/anime', {
+                title: this.title,
+		rating: this.rating,
+                description: this.description,
+                path: r1.data.path
+        });
+        this.addEntry = r2.data;
+    },
+    async getEntries() {
+        console.log("HERE");
+        let response = await axios.get("/api/anime");
+	console.log("Here4");
+        this.entries = response.data;
+	console.log(this.entries);
+        return true;
+
+    },
+    selectItem(anime) {
+      this.findTitle = "";
+      this.findRating = "";
+      this.findDescription = "";
+      this.findAnime = anime;
+    },
+    async deleteItem(anime) {
+
+        await axios.delete("/api/anime/" + anime._id);
+        this.findItem = null;
+        this.getEntries();
+        return true;
+
+    },
+    async editItem(anime) {
+        await axios.put("/api/anime/" + anime._id, {
+                title: this.findEntry.title,
+		rating: this.findEntry.rating,
+                description: this.findEntry.description,
+        });
+        this.findItem = null;
+        this.getItems();
+        return true;
+    },
+  }
+}
+</script>
+
